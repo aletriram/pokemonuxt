@@ -21,22 +21,18 @@ export default {
 	components: {
 		listado
 	},
-	data() {
-		return {
-			pokemons: [],
-		}
-	},
 	watchQuery: ['page'],
 	asyncData ({isDev, route, store, env, params, query, req, res, redirect, error}) {
-		let page = query.page ? query.page : 1;
+		let page = query.page > 0 ? query.page : 1;
 		let limit = 10;
 		let offset = (page - 1) * limit; 
 
-		return axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`).then((res) => {
-			return { pokemons: res.data.results, anterior: res.data.previous || '', siguiente: res.data.next || '', page: page };
-		}).catch((e) => {
-			error({ statusCode: 404, message: 'Page not found' })
-		})
+		return { pokemons: [{name: 'metapod'}], anterior: '', siguiente: '', page: page };
+		// return axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`).then((res) => {
+		// 	return { pokemons: res.data.results, anterior: res.data.previous || '', siguiente: res.data.next || '', page: page };
+		// }).catch((e) => {
+		// 	error({ statusCode: 404, message: 'Page not found' })
+		// });
 	},
 	methods: {
 		getAnterior() {
