@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<b-table striped hover :items="pokemons", :fields="fields" @row-clicked="goPokemon"></b-table>
+		<b-table striped hover :items="pokemons" :fields="fields" @row-clicked="goPokemon"></b-table>
 	</div>
 </template>
 

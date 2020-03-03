@@ -27,12 +27,11 @@ export default {
 		let limit = 10;
 		let offset = (page - 1) * limit; 
 
-		return { pokemons: [{name: 'metapod'}], anterior: '', siguiente: '', page: page };
-		// return axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`).then((res) => {
-		// 	return { pokemons: res.data.results, anterior: res.data.previous || '', siguiente: res.data.next || '', page: page };
-		// }).catch((e) => {
-		// 	error({ statusCode: 404, message: 'Page not found' })
-		// });
+		return axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`).then((res) => {
+			return { pokemons: res.data.results, anterior: res.data.previous || '', siguiente: res.data.next || '', page: page };
+		}).catch((e) => {
+			error({ statusCode: 404, message: 'Page not found' })
+		});
 	},
 	methods: {
 		getAnterior() {

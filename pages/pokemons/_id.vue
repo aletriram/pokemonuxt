@@ -1,6 +1,10 @@
 <template>
 	<b-container>
-		<b-row><nuxt-link to="/pokemons">Volver</nuxt-link></b-row>
+		<b-row>
+			<b-col>
+				<b-button :to="this.enlaceBack" class="mt-2">Volver</b-button>
+			</b-col>
+		</b-row>
 		<b-row>
 			<b-col cols="auto"><b-img :src="pokemon.sprites.front_default" fluid></b-img></b-col>
 			<b-col>
@@ -8,6 +12,11 @@
 					<b-col><h2>{{pokemon.name}}</h2></b-col>
 					<b-col cols="auto"><h3>#{{pokemon.id}}</h3></b-col>
 				</b-row>
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col>
+				<b-button :to="this.enlaceBack" class="mt-2 mb-2">Volver</b-button>
 			</b-col>
 		</b-row>
 	</b-container>
@@ -26,5 +35,13 @@ export default {
 			error({ statusCode: 404, message: 'Page not found' })
 		})
 	},
+	computed: {
+		enlaceBack() {
+			if (this.pokemon && this.pokemon.id) {
+				let page = Math.floor(this.pokemon.id / 10) + 1
+				return `/pokemons?page=${page}`;
+			} else return '/pokemons'
+		}
+	}
 }
 </script>
