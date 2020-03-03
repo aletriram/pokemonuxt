@@ -4,6 +4,10 @@
   "description": "My scrumtrulescent Nuxt.js project",
   "author": "Alejandro Trinidad Ramos",
   "private": true,
+  "engines": {
+	"node": "12.13.0",
+	"npm": "6.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
